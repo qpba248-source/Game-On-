@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game On - المنيو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Tajawal:wght@400;500;700;900&family=Anton&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0c;
+    --card:#161616;
+    --card-edge:#272727;
+    --orange:#ff7a1a;
+    --orange-dark:#d95f00;
+    --white:#f3f3f3;
+    --muted:#9a9a9a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 0%, rgba(255,122,26,0.08), transparent 40%),
+      radial-gradient(circle at 90% 30%, rgba(255,122,26,0.06), transparent 35%),
+      var(--bg);
+    color:var(--white);
+    font-family:'Tajawal', sans-serif;
+    direction:rtl;
+  }
+  .menu{max-width:480px; margin:0 auto; padding:0 0 50px;}
+
+  /* ---------- COVER ---------- */
+  .cover{
+    position:relative;
+    overflow:hidden;
+    padding:56px 24px 40px;
+    text-align:center;
+    border-bottom:5px solid var(--orange);
+    background:
+      linear-gradient(180deg, #141414 0%, #0c0c0c 100%);
+  }
+  .cover::before{
+    content:"";
+    position:absolute; top:-40px; left:-60px;
+    width:220px; height:220px;
+    background:var(--orange);
+    opacity:0.15;
+    filter:blur(10px);
+    transform:rotate(20deg) skew(-10deg);
+  }
+  .cover::after{
+    content:"";
+    position:absolute; bottom:-60px; right:-50px;
+    width:200px; height:160px;
+    background:var(--orange);
+    opacity:0.12;
+    filter:blur(10px);
+    transform:rotate(-15deg) skew(10deg);
+  }
+  .controller{ width:74px; height:74px; margin:0 auto 14px; position:relative; z-index:1;}
+  .controller svg{ width:100%; height:100%; }
+  .logo{ position:relative; z-index:1; font-family:'Anton', sans-serif; letter-spacing:2px; line-height:0.95; }
+  .logo .l1{ display:block; font-size:38px; color:#fff; }
+  .logo .l2{ display:block; font-size:52px; color:var(--orange); }
+  .cover-tags{
+    position:relative; z-index:1;
+    margin-top:16px; font-family:'Cairo'; font-weight:700;
+    font-size:13px; letter-spacing:2px; color:var(--muted);
+    text-transform:uppercase;
+  }
+  .cover-tags span{ color:var(--orange); }
+  .cover-slogan{
+    position:relative; z-index:1;
+    margin-top:26px; font-family:'Cairo'; font-weight:900; font-size:19px;
+  }
+  .cover-slogan .hl{ color:var(--orange); display:block; font-size:22px; margin-top:2px;}
+
+  /* ---------- SECTION HEADER ---------- */
+  .section-title-wrap{ padding:30px 20px 4px; }
+  .section-title{
+    font-family:'Cairo'; font-weight:900; font-size:24px; color:#fff;
+    display:flex; align-items:center; gap:10px;
+  }
+  .section-title .bar{ flex:1; height:3px; background:linear-gradient(90deg, var(--orange), transparent); }
+  .section-title .slash{ color:var(--orange); }
+
+  /* ---------- CATEGORY CARD ---------- */
+  .category{
+    margin:14px 16px 0;
+    background:var(--card);
+    border:1px solid var(--card-edge);
+    border-radius:14px;
+    padding:18px 18px 12px;
+    position:relative;
+    overflow:hidden;
+  }
+  .category::before{
+    content:""; position:absolute; top:0; right:0; left:0; height:4px;
+    background:linear-gradient(90deg, var(--orange), var(--orange-dark) 60%, transparent);
+  }
+  .cat-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .cat-name{ font-family:'Cairo'; font-weight:800; font-size:19px; color:var(--orange); }
+  .cat-name-en{ font-family:'Anton'; font-size:12px; color:#5c5c5c; letter-spacing:2px; text-transform:uppercase; }
+
+  .item-row{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    padding:10px 0; border-bottom:1px dashed #2a2a2a;
+  }
+  .item-row:last-of-type{ border-bottom:none; }
+  .item-name{ font-weight:700; font-size:15px; color:#eee; }
+  .item-note{ font-size:12px; color:var(--muted); margin-top:2px; }
+  .item-price{
+    flex-shrink:0; background:var(--orange); color:#111;
+    font-family:'Cairo'; font-weight:800; font-size:13.5px;
+    padding:5px 11px; border-radius:7px; white-space:nowrap;
+  }
+  .pending{
+    background:transparent; color:var(--muted); border:1px dashed #444;
+    font-weight:700;
+  }
+
+  .note-box{
+    margin:12px 0 4px; padding:10px 12px;
+    background:#1d1408; border:1px dashed var(--orange);
+    border-radius:8px; font-size:12.5px; color:#e0ac6c;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    margin:36px 16px 0; background:var(--orange); border-radius:14px;
+    padding:20px 18px; color:#111; text-align:center;
+  }
+  .footer .thanks{ font-family:'Cairo'; font-weight:900; font-size:18px; margin-bottom:10px;}
+  .footer .contact{ display:flex; justify-content:center; gap:22px; flex-wrap:wrap; font-weight:700; font-size:13px; }
+  .footer .contact div{ display:flex; align-items:center; gap:6px; }
+</style>
+</head>
+<body>
+<div class="menu">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="controller">
+      <svg viewBox="0 0 100 60" fill="none">
+        <path d="M25 15h50c14 0 22 12 20 26-2 12-10 17-18 12l-10-9H33l-10 9c-8 5-16 0-18-12C3 27 11 15 25 15Z"
+              stroke="#ff7a1a" stroke-width="4"/>
+        <circle cx="30" cy="30" r="3" fill="#ff7a1a"/>
+        <line x1="26" y1="26" x2="26" y2="34" stroke="#ff7a1a" stroke-width="3" stroke-linecap="round"/>
+        <line x1="22" y1="30" x2="30" y2="30" stroke="#ff7a1a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="72" cy="27" r="3" fill="#ff7a1a"/>
+        <circle cx="80" cy="33" r="3" fill="#ff7a1a"/>
+      </svg>
+    </div>
+    <div class="logo">
+      <span class="l1">GAME</span>
+      <span class="l2">ON</span>
+    </div>
+    <div class="cover-tags">برغر <span>•</span> ستيك <span>•</span> شاورما <span>•</span> أركيلة</div>
+    <div class="cover-slogan">GOOD FOOD <span class="hl">GOOD GAME</span></div>
+  </div>
+
+  <!-- البرغر -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// البرغر</span><span class="cat-name-en">BURGERS</span></div>
+    <div class="item-row"><span class="item-name">كلاسيك برغر</span><span class="item-price">7,000</span></div>
+    <div class="item-row"><span class="item-name">جوسي برغر</span><span class="item-price">7,500</span></div>
+    <div class="item-row"><span class="item-name">سيزل لاب برغر</span><span class="item-price">7,500</span></div>
+    <div class="item-row"><span class="item-name">برغر تورتيلا (دوريتوس)</span><span class="item-price">8,000</span></div>
+    <div class="item-row"><span class="item-name">برغر لحم دايت</span><span class="item-price">7,500</span></div>
+    <div class="item-row"><span class="item-name">برغر لحم بالجبن دايت</span><span class="item-price">8,000</span></div>
+  </div>
+
+  <!-- الساندويتش -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// الساندويتش</span><span class="cat-name-en">SANDWICHES</span></div>
+    <div class="item-row"><span class="item-name">فاهيتا دجاج</span><span class="item-price">6,500</span></div>
+    <div class="item-row"><span class="item-name">كرسبي</span><span class="item-price">6,000</span></div>
+    <div class="item-row"><span class="item-name">راب دجاج</span><span class="item-price">5,500</span></div>
+    <div class="item-row"><span class="item-name">فيلاديلفيا لحم</span><span class="item-price">7,000</span></div>
+    <div class="item-row"><span class="item-name">شاورما دجاج</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">زنجر</span><span class="item-price">6,000</span></div>
+    <div class="item-row"><span class="item-name">كاساديا دجاج</span><span class="item-price">6,000</span></div>
+    <div class="item-row"><span class="item-name">ساندويتش دجاج</span><span class="item-price">6,500</span></div>
+  </div>
+
+  <!-- المقبلات -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// المقبلات</span><span class="cat-name-en">STARTERS</span></div>
+    <div class="item-row"><span class="item-name">فنكر</span><span class="item-price">3,000</span></div>
+    <div class="item-row"><span class="item-name">بطاطا ودجز</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">كريزي فرايس</span><span class="item-price">5,000</span></div>
+    <div class="item-row"><span class="item-name">داينمت تشيز فرايز</span><span class="item-price">5,000</span></div>
+    <div class="item-row"><span class="item-name">بوفلو تندر دجاج</span><span class="item-price">6,750</span></div>
+    <div class="item-row"><span class="item-name">تندر دجاج</span><span class="item-price">6,500</span></div>
+    <div class="item-row"><span class="item-name">ناتشو مكسيكي</span><span class="item-price">5,500</span></div>
+    <div class="item-row"><span class="item-name">ناتشو بالجبنة</span><span class="item-price">5,500</span></div>
+    <div class="item-row"><span class="item-name">سيزل لاب</span><span class="item-price">5,500</span></div>
+  </div>
+
+  <!-- السلطات -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// السلطات</span><span class="cat-name-en">SALADS</span></div>
+    <div class="item-row"><span class="item-name">سلطة سيزر</span><span class="item-price">6,000</span></div>
+    <div class="item-row"><span class="item-name">سلطة سيزل لاب</span><span class="item-price">5,500</span></div>
+  </div>
+
+  <!-- الريزو -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// الريزو</span><span class="cat-name-en">RIZZO</span></div>
+    <div class="item-row"><span class="item-name">كلاسيك ريزو</span><span class="item-price">5,500</span></div>
+    <div class="item-row"><span class="item-name">باربكيو تشيز ريزو</span><span class="item-price">5,500</span></div>
+  </div>
+
+  <!-- الوجبات الرئيسية -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// الوجبات الرئيسية</span><span class="cat-name-en">MAIN PLATES</span></div>
+    <div class="item-row"><span class="item-name">ستراكانوف لحم</span><span class="item-price">9,000</span></div>
+    <div class="item-row"><span class="item-name">ستراكانوف دجاج</span><span class="item-price">8,500</span></div>
+    <div class="item-row"><span class="item-name">وجبة كرسبي</span><span class="item-price">8,500</span></div>
+  </div>
+
+  <!-- ستيك -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// ستيك</span><span class="cat-name-en">STEAK</span></div>
+    <div class="item-row"><span class="item-name">ستيك لحم مع رز</span><span class="item-price">10,500</span></div>
+    <div class="item-row"><span class="item-name">ستيك لحم بطاطا مهروسة</span><span class="item-price">10,500</span></div>
+    <div class="item-row"><span class="item-name">ستيك دجاج مع رز</span><span class="item-price">9,000</span></div>
+    <div class="item-row"><span class="item-name">ستيك دجاج مع بطاطا مهروسة</span><span class="item-price">9,000</span></div>
+    <div class="item-row"><span class="item-name">ستيك لحم ساندويتش</span><span class="item-price">8,000</span></div>
+  </div>
+
+  <!-- الاراكيل -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// الاراكيل</span><span class="cat-name-en">HOOKAH</span></div>
+    <div class="item-row"><span class="item-name">انكليزي</span><span class="item-price">8,000</span></div>
+    <div class="item-row"><span class="item-name">تفاحتين</span><span class="item-price">8,000</span></div>
+    <div class="item-row"><span class="item-name">ليمون نعناع</span><span class="item-price">8,000</span></div>
+    <div class="item-row"><span class="item-name">علج نعناع</span><span class="item-price">8,000</span></div>
+    <div class="item-row"><span class="item-name">كيم أون 1</span><span class="item-price">8,500</span></div>
+    <div class="item-row"><span class="item-name">كيم أون 2</span><span class="item-price">8,500</span></div>
+  </div>
+
+  <!-- سموذي -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// سموذي</span><span class="cat-name-en">SMOOTHIES</span></div>
+    <div class="item-row"><span class="item-name">فراولة</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">فراولة موز</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">مانجو</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">مانجو اورنج</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">اناناس</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">ليمون نعناع</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">جمايكا</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">بيناكولادا</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">كيوي</span><span class="item-price">4,500</span></div>
+  </div>
+
+  <!-- المشروبات الباردة -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// المشروبات الباردة</span><span class="cat-name-en">COLD DRINKS</span></div>
+    <div class="item-row"><span class="item-name">أيس لاتية</span><span class="item-price">4,000</span></div>
+    <div class="item-row"><span class="item-name">أيس لاتية كيم اون</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">أيس امريكانو</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">أيس كيم اون امريكانو</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">برتقال اسبرسو</span><span class="item-price">4,000</span></div>
+    <div class="item-row"><span class="item-name">فرابتشينو</span><span class="item-price">2,000</span></div>
+    <div class="item-row"><span class="item-name">أيس تي</span><span class="item-price">3,000</span></div>
+    <div class="item-row"><span class="item-name">اسبرسو افوكادو</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">حامض</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">تايكر</span><span class="item-price">1,500</span></div>
+    <div class="item-row"><span class="item-name">تايكر مكسيكي</span><span class="item-price">2,500</span></div>
+    <div class="item-row"><span class="item-name">ريد بول</span><span class="item-price">3,000</span></div>
+    <div class="item-row"><span class="item-name">ريد بول مكسيكي</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">ريد بول مكس</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">مشروبات غازية</span><span class="item-price">1,000</span></div>
+  </div>
+
+  <!-- مشروبات ساخنة -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// مشروبات ساخنة</span><span class="cat-name-en">HOT DRINKS</span></div>
+    <div class="item-row"><span class="item-name">لاتيه</span><span class="item-price">4,000</span></div>
+    <div class="item-row"><span class="item-name">لاتية كيم اون</span><span class="item-price">4,500</span></div>
+    <div class="item-row"><span class="item-name">موكا</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">كابتشينو</span><span class="item-price">3,500</span></div>
+    <div class="item-row"><span class="item-name">هوت شوكليت</span><span class="item-price">3,000</span></div>
+    <div class="item-row"><span class="item-name">قهوة تركية</span><span class="item-price">2,500</span></div>
+    <div class="item-row"><span class="item-name">قزوان</span><span class="item-price">2,000</span></div>
+    <div class="item-row"><span class="item-name">اسبرسو</span><span class="item-price">2,000</span></div>
+    <div class="item-row"><span class="item-name">اسبرسو دبل</span><span class="item-price">3,000</span></div>
+    <div class="item-row"><span class="item-name">امريكانو</span><span class="item-price">1,000</span></div>
+    <div class="item-row"><span class="item-name">شاي</span><span class="item-price">1,500</span></div>
+    <div class="item-row"><span class="item-name">شاي دبل</span><span class="item-price">1,500</span></div>
+    <div class="item-row"><span class="item-name">شاي حامض</span><span class="item-price">1,500</span></div>
+    <div class="item-row"><span class="item-name">شاي حامض دبل</span><span class="item-price">2,500</span></div>
+    <div class="item-row"><span class="item-name">شاي كرك</span><span class="item-price">2,000</span></div>
+  </div>
+
+  <!-- كوكتيل -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// كوكتيل</span><span class="cat-name-en">COCKTAIL</span></div>
+    <div class="item-row"><span class="item-name">امبراطور</span><span class="item-price">5,000</span></div>
+    <div class="item-row"><span class="item-name">افوكادو</span><span class="item-price">6,000</span></div>
+    <div class="item-row"><span class="item-name">فواكه</span><span class="item-price">4,000</span></div>
+  </div>
+
+  <!-- موهيتو -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// موهيتو</span><span class="cat-name-en">MOJITO</span></div>
+    <div class="item-row"><span class="item-name">كلاسيك، روزبيري، فراولة، بلو، باشن فروت</span><span class="item-price">3,500</span></div>
+  </div>
+
+  <!-- الحلويات -->
+  <div class="category">
+    <div class="cat-head"><span class="cat-name">// الحلويات</span><span class="cat-name-en">DESSERTS</span></div>
+    <div class="item-row"><span class="item-name">كريب</span><span class="item-price pending">السعر عند الطلب</span></div>
+    <div class="item-row"><span class="item-name">وافل</span><span class="item-price pending">السعر عند الطلب</span></div>
+    <div class="item-row"><span class="item-name">بان كيك</span><span class="item-price pending">السعر عند الطلب</span></div>
+    <div class="item-row"><span class="item-name">بوظة</span><span class="item-price pending">السعر عند الطلب</span></div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="thanks">THANK YOU – SEE YOU AGAIN</div>
+  </div>
+
+</div>
+</body>
+</html>
